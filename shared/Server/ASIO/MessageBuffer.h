@@ -18,7 +18,7 @@
 
 #include <string>
 #include <vector>
-
+#include <cstdint>
 class MessageBuffer {
     typedef std::vector<uint8_t>::size_type size_type;
 

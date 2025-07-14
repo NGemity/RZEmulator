@@ -3,6 +3,8 @@ if(WITH_PCH)
     set(chihiroPCH "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeaders/chihiroPCH.h")
 endif()
 
+find_path(SOL2_INCLUDE_DIRS "sol/abort.hpp")
+
 include_directories(
         ${CMAKE_BINARY_DIR}
         ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -33,8 +35,8 @@ include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Server
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Skills
         ${CMAKE_CURRENT_SOURCE_DIR}/src/World
-        ${CMAKE_SOURCE_DIR}/dep/sol2/single/include/sol
         ${CMAKE_SOURCE_DIR}/dep/liblua
+        ${SOL2_INCLUDE_DIRS}
         ${SHARED_INCLUDE_DIR})
 if (UNIX)
     include_directories(${READLINE_INCLUDE_DIR})

@@ -33,7 +33,6 @@ option(WITH_TOOLS           "Also compile additional tools"                  ON)
 option(NG_USE_CLITHREAD     "Use CLI Thread (readline on Linux)"             OFF)
 
 find_package(Platform REQUIRED)
-find_package(PCHSupport REQUIRED)
 IF(NG_USE_CLITHREAD)
     find_package(Readline REQUIRED)
     add_definitions(-DNG_USE_CLITHREAD)

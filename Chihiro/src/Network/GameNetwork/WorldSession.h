@@ -43,6 +43,7 @@ public:
     // void OnAccept() override;
     void OnClose() override;
     void KickPlayer();
+    using XSocket::Update;
     bool Update(uint32_t diff);
 
     ReadDataHandlerResult ProcessIncoming(XPacket *) override;

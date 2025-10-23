@@ -81,7 +81,7 @@ DatabaseWorkerPool<T>::~DatabaseWorkerPool()
 template<class T>
 void DatabaseWorkerPool<T>::SetConnectionInfo(std::string const &infoString, uint8_t const asyncThreads, uint8_t const synchThreads)
 {
-    _connectionInfo = NGemity::make_unique<MySQLConnectionInfo>(infoString);
+    _connectionInfo = std::make_unique<MySQLConnectionInfo>(infoString);
 
     _async_threads = asyncThreads;
     _synch_threads = synchThreads;
@@ -314,9 +314,9 @@ uint32_t DatabaseWorkerPool<T>::OpenConnections(InternalIndex type, uint8_t numC
         auto connection = [&] {
             switch (type) {
             case IDX_ASYNC:
-                return NGemity::make_unique<T>(_queue.get(), *_connectionInfo);
+                return std::make_unique<T>(_queue.get(), *_connectionInfo);
             case IDX_SYNCH:
-                return NGemity::make_unique<T>(*_connectionInfo);
+                return std::make_unique<T>(*_connectionInfo);
             default:
                 ABORT();
             }

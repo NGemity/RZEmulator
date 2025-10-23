@@ -29,6 +29,7 @@
 #include "WorldSession.h"
 
 // used for creating values for respawn for example
+#define UI64LIT(x)  x##ULL
 #define PAIR64_HIPART(x) (uint32_t)((uint64_t(x) >> 32) & UI64LIT(0x00000000FFFFFFFF))
 #define PAIR64_LOPART(x) (uint32_t)(uint64_t(x) & UI64LIT(0x00000000FFFFFFFF))
 

@@ -51,29 +51,6 @@
 
 #endif
 
-#if COMPILER == COMPILER_MICROSOFT
-// #define snprintf _snprintf
-#define atoll _atoi64
-// #define vsnprintf _vsnprintf
-#define llabs _abs64
-#else
-#define stricmp strcasecmp
-#define strnicmp strncasecmp
-#endif
-
-inline unsigned long atoul(char const *str)
-{
-    return strtoul(str, nullptr, 10);
-}
-
-inline unsigned long long atoull(char const *str)
-{
-    return strtoull(str, nullptr, 10);
-}
-#define STRINGIZE(a) #a
-
-enum TimeConstants { MINUTE = 60, HOUR = MINUTE * 60, DAY = HOUR * 24, WEEK = DAY * 7, MONTH = DAY * 30, YEAR = MONTH * 12, IN_MILLISECONDS = 1000 };
-
 using namespace std::literals::string_literals;
 
 // we always use stdlib std::max/std::min, undefine some not C++ standard
@@ -85,12 +62,6 @@ using namespace std::literals::string_literals;
 #ifdef min
 #undef min
 #endif
-
-#ifndef M_PI
-#define M_PI 3.14159265358979323846
-#endif
-
-#define MAX_QUERY_LEN 32 * 1024
 
 namespace NGemity {
     using std::make_unique;

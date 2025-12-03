@@ -3717,5 +3717,6 @@ int32_t Player::onDamage(Unit *pFrom, ElementalType elementalType, DamageType da
 
 void Player::onStandUp()
 {
-    RemoveStateIf(StateFlagChecker(AF_ERASE_ON_STAND_UP));
+    std::vector<State *> removedStates{};
+    RemoveStateIf(StateFlagChecker(AF_ERASE_ON_STAND_UP), &removedStates, false);
 }

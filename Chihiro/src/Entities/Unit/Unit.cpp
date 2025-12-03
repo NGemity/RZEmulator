@@ -3044,40 +3044,6 @@ void Unit::removeStateByDead()
     }
 }
 
-template<typename COMPARER>
-void Unit::RemoveStateIf(COMPARER comparer, std::vector<State *> *result, bool bByDead)
-{
-    std::vector<State *> removedStates{};
-    std::vector<State *>::iterator it, trail;
-    if (result != nullptr)
-        removedStates.swap(*result);
-
-    for (it = m_vStateList.begin(), trail = it; it != m_vStateList.end(); ++it) {
-        if (comparer(*it)) {
-            removedStates.emplace_back(*it);
-        }
-        else {
-            if (trail != it) {
-                *trail = *it;
-            }
-            ++trail;
-        }
-    }
-
-    m_vStateList.resize(trail - m_vStateList.begin());
-
-    for (it = removedStates.begin(); it != removedStates.end(); ++it) {
-        onUpdateState((*it), true);
-        onAfterRemoveState(*it, bByDead);
-    }
-
-    if (!removedStates.empty())
-        CalculateStat();
-
-    if (result != nullptr)
-        removedStates.swap(*result);
-}
-
 void Unit::RestoreRemovedStateByDeath()
 {
     auto t = sWorld.GetArTime();

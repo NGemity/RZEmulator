@@ -1,7 +1,4 @@
 set(LIBRARY_NAME Chihiro)
-if(WITH_PCH)
-    set(chihiroPCH "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeaders/chihiroPCH.h")
-endif()
 
 include_directories(
         ${CMAKE_BINARY_DIR}
@@ -33,7 +30,7 @@ include_directories(
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Server
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Skills
         ${CMAKE_CURRENT_SOURCE_DIR}/src/World
-        ${CMAKE_SOURCE_DIR}/dep/sol2/single/include/sol
+        ${CMAKE_SOURCE_DIR}/dep/sol2/include/
         ${CMAKE_SOURCE_DIR}/dep/liblua
         ${SHARED_INCLUDE_DIR})
 if (UNIX)
@@ -112,8 +109,4 @@ if(UNIX)
     endif()
     target_link_libraries(${LIBRARY_NAME}  ${READLINE_LIBRARY})
     set_target_properties(${LIBRARY_NAME}  PROPERTIES LINK_FLAGS ${EXECUTABLE_LINK_FLAGS})
-endif()
-
-if(WITH_PCH)
-    add_cxx_pch(${LIBRARY_NAME} ${chihiroPCH})
 endif()

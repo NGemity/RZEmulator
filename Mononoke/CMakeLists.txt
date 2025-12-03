@@ -1,7 +1,4 @@
 set(LIBRARY_NAME Mononoke)
-if(WITH_PCH)
-    set(mononokePCH "${CMAKE_CURRENT_SOURCE_DIR}/src/PrecompiledHeaders/mononokePCH.h")
-endif()
 
 include_directories(
     ${CMAKE_BINARY_DIR}
@@ -38,8 +35,4 @@ if(UNIX)
         set(EXECUTABLE_LINK_FLAGS "-Wl,--no-as-needed -ldl -pthread -lrt ${EXECUTABLE_LINK_FLAGS}")
     endif()
     set_target_properties(${LIBRARY_NAME} PROPERTIES LINK_FLAGS ${EXECUTABLE_LINK_FLAGS})
-endif()
-
-if(WITH_PCH)
-    add_cxx_pch(${LIBRARY_NAME} ${mononokePCH})
 endif()

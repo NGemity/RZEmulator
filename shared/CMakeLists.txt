@@ -1,7 +1,4 @@
 set(LIBRARY_NAME shared)
-if(WITH_PCH)
-        set(sharedPCH "${CMAKE_CURRENT_SOURCE_DIR}/PrecompiledHeaders/sharedPCH.h")
-endif()
 
 file(GLOB SRC_GRP_ASIO Asio/*.cpp Asio/*.h)
 source_group("ASIO" FILES ${SRC_GRP_ASIO})
@@ -83,6 +80,3 @@ include_directories(
 add_library(${LIBRARY_NAME} STATIC ${LIBRARY_SRCS})
 target_include_directories(${LIBRARY_NAME} SYSTEM PRIVATE $ENV{INCLUDE})
 target_link_libraries(${LIBRARY_NAME} unofficial::libmariadb fmt::fmt Boost::boost OpenSSL::SSL nlohmann_json::nlohmann_json)
-if(WITH_PCH)
-        add_cxx_pch(${LIBRARY_NAME} ${sharedPCH})
-endif()

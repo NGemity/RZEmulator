@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 4.2.0)
 
 set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
   CACHE STRING "Vcpkg toolchain file")
@@ -28,12 +28,10 @@ if(CMAKE_BUILD_TYPE MATCHES "Debug")
 endif()
 
 option(WITHOUT_GIT          "Disable the GIT testing routines"               OFF)
-option(WITH_PCH             "Use Precompiled Headers"                        OFF)
 option(WITH_TOOLS           "Also compile additional tools"                  ON)
 option(NG_USE_CLITHREAD     "Use CLI Thread (readline on Linux)"             OFF)
 
 find_package(Platform REQUIRED)
-find_package(PCHSupport REQUIRED)
 IF(NG_USE_CLITHREAD)
     find_package(Readline REQUIRED)
     add_definitions(-DNG_USE_CLITHREAD)
@@ -53,12 +51,6 @@ include(${CMAKE_SOURCE_DIR}/cmake/SetDefinitions.cmake)
 IF(NOT WITHOUT_GIT)
     find_package(Git)
 ENDIF()
-
-if(WITH_PCH)
-    message("Compiling with PrecompiledHeaders")
-else()
-    message("Compiling without PrecompiledHeaders")
-endif()
 
 # Find revision ID and hash of the sourcetree
 include(cmake/genrev.cmake)
